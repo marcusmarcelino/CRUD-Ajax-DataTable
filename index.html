@@ -6,17 +6,14 @@
    <meta charset="utf-8">
    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+   
    <script src="https://kit.fontawesome.com/c08cea7233.js" crossorigin="anonymous"></script>
 
-   <link rel="stylesheet" type="text/css"
-      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
+   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.css" />
 
    <!--<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">-->
-
 
 </head>
 
@@ -31,7 +28,6 @@
    </header>
 
    <div class="container">
-      <!-- Button trigger modal -->
       <div>
          <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#modalForm">
             Add
@@ -47,37 +43,7 @@
                <th>Opções</th>
             </tr>
          </thead>
-         <tbody>
-            <tr>
-               <td scope="row">Evento estático 1</td>
-               <td scope="row">Paraíso do Tocantins</td>
-               <td scope="row">06/11/2019</td>
-               <td>
-                  <button type="button" name="edit" id="edit" class="btn btn-warning">
-                     <i class="fa fa-edit"></i></button>
-                  <button type="button" name="edit" id="edit" class="btn btn-primary">
-                     <i class="fa fa-info" aria-hidden="true"></i>
-                  </button>
-                  <button type="button" name="edit" id="edit" class="btn btn-danger">
-                     <i class="fa fa-trash" aria-hidden="true"></i>
-                  </button>
-               </td>
-            </tr>
-            <tr>
-               <td scope="row">Evento estático 2</td>
-               <td scope="row">Palmas do Tocantins</td>
-               <td scope="row">07/12/2019</td>
-               <td>
-                  <button type="button" name="edit" id="edit" class="btn btn-warning">
-                     <i class="fa fa-edit"></i></button>
-                  <button type="button" name="edit" id="edit" class="btn btn-primary">
-                     <i class="fa fa-info" aria-hidden="true"></i>
-                  </button>
-                  <button type="button" name="edit" id="edit" class="btn btn-danger">
-                     <i class="fa fa-trash" aria-hidden="true"></i>
-                  </button>
-               </td>
-            </tr>
+         <tbody id="tbody">
          </tbody>
       </table>
    </div>
@@ -97,21 +63,19 @@
                <form method="POST" action="" data-toggle="validator" role="form">
                   <div class="form-group">
                      <label for="Nome">Nome do Evento</label>
-                     <input type="text" class="form-control" name="nomeEvento" id="nomeEvento" aria-describedby="helpId"
+                     <input type="text" class="form-control" name="nomeEvento" id="nomeEvento" aria-describedby="nomeId"
                         placeholder="Nome do Evento" required>
                   </div>
                   <div class="form-group">
                      <label for="Local">Local do Evento</label>
-                     <input type="text" class="form-control" name="localEvento" id="localEvento" aria-describedby="helpId"
+                     <input type="text" class="form-control" name="localEvento" id="localEvento" aria-describedby="localId"
                         placeholder="Local do Evento" required>
                   </div>
                   <div class="form-group">
                      <label for="Data">Data do Evento</label>
-                     <input type="date" class="form-control" name="dataEvento" id="dataEvento" aria-describedby="helpId"
+                     <input type="date" class="form-control" name="dataEvento" id="dataEvento" aria-describedby="dataId"
                         placeholder="Data do Evento" required>
                   </div>
-                  <input type="hidden" id="editRowID" value="0">
-
                   <div class="modal-footer">
                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Sair</button>
                      <button onclick="save()" class="btn btn-primary">Salvar</button>
@@ -140,12 +104,7 @@
    <script type="text/javascript" charset="utf8"
       src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
 
-   <script>
-      $(document).ready(function () {
-         $('#tabelaDeEventos').DataTable();
-         $('.dataTables_length').addClass('bs-select');
-      });
-   </script>
+   <script src="ajax.js"></script>
 
 </body>
 
