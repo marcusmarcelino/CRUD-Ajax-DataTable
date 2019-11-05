@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+   <title>Title</title>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+   <script src="https://kit.fontawesome.com/c08cea7233.js" crossorigin="anonymous"></script>
+
+   <link rel="stylesheet" type="text/css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
+   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.css" />
+
+   <!--<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">-->
+
+
+</head>
+
+<body>
+   <header class="jumbotron jumbotron-fluid">
+      <div class="container">
+         <h1 class="display-3">Cadastro de Eventos</h1>
+         <p class="lead">Um CRUD de eventos, DataTable - utilizando Javascript, jQuery, Ajax, PHP, MySql e Bootstrap.
+         </p>
+         <hr class="my-2">
+      </div>
+   </header>
+
+   <div class="container">
+      <!-- Button trigger modal -->
+      <div>
+         <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#modalForm">
+            Add
+         </button>
+      </div>
+      <br>
+      <table id="tabelaDeEventos" class="table table-hover text-center">
+         <thead class="thead-dark">
+            <tr>
+               <th>Evento</th>
+               <th>Local</th>
+               <th>Data</th>
+               <th>Opções</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td scope="row">Evento estático 1</td>
+               <td scope="row">Paraíso do Tocantins</td>
+               <td scope="row">06/11/2019</td>
+               <td>
+                  <button type="button" name="edit" id="edit" class="btn btn-warning">
+                     <i class="fa fa-edit"></i></button>
+                  <button type="button" name="edit" id="edit" class="btn btn-primary">
+                     <i class="fa fa-info" aria-hidden="true"></i>
+                  </button>
+                  <button type="button" name="edit" id="edit" class="btn btn-danger">
+                     <i class="fa fa-trash" aria-hidden="true"></i>
+                  </button>
+               </td>
+            </tr>
+            <tr>
+               <td scope="row">Evento estático 2</td>
+               <td scope="row">Palmas do Tocantins</td>
+               <td scope="row">07/12/2019</td>
+               <td>
+                  <button type="button" name="edit" id="edit" class="btn btn-warning">
+                     <i class="fa fa-edit"></i></button>
+                  <button type="button" name="edit" id="edit" class="btn btn-primary">
+                     <i class="fa fa-info" aria-hidden="true"></i>
+                  </button>
+                  <button type="button" name="edit" id="edit" class="btn btn-danger">
+                     <i class="fa fa-trash" aria-hidden="true"></i>
+                  </button>
+               </td>
+            </tr>
+         </tbody>
+      </table>
+   </div>
+
+   <!-- Modal -->
+   <div class="modal fade" id="modalForm" tabindex="-1" role="dialog" aria-labelledby="modalFormLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title" id="modalFormLabel">Cadastre o Evento</h5>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+               </button>
+            </div>
+            <div class="modal-body">
+               <form method="POST" action="" data-toggle="validator" role="form">
+                  <div class="form-group">
+                     <label for="Nome">Nome do Evento</label>
+                     <input type="text" class="form-control" name="nomeEvento" id="nomeEvento" aria-describedby="helpId"
+                        placeholder="Nome do Evento" required>
+                  </div>
+                  <div class="form-group">
+                     <label for="Local">Local do Evento</label>
+                     <input type="text" class="form-control" name="localEvento" id="localEvento" aria-describedby="helpId"
+                        placeholder="Local do Evento" required>
+                  </div>
+                  <div class="form-group">
+                     <label for="Data">Data do Evento</label>
+                     <input type="date" class="form-control" name="dataEvento" id="dataEvento" aria-describedby="helpId"
+                        placeholder="Data do Evento" required>
+                  </div>
+                  <input type="hidden" id="editRowID" value="0">
+
+                  <div class="modal-footer">
+                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Sair</button>
+                     <button onclick="save()" class="btn btn-primary">Salvar</button>
+                  </div>
+               </form>
+            </div>
+
+         </div>
+      </div>
+   </div>
+
+   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"></script>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"></script>
+
+
+   <script src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+
+   <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.js"></script>
+   <script type="text/javascript" charset="utf8"
+      src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+
+   <script>
+      $(document).ready(function () {
+         $('#tabelaDeEventos').DataTable();
+         $('.dataTables_length').addClass('bs-select');
+      });
+   </script>
+
+</body>
+
+</html>
