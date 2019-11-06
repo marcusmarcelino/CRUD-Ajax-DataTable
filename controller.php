@@ -29,9 +29,9 @@ function getList (){
          while($data = $result->fetch_assoc()){
             $response .= '
                <tr>
-                  <td scope="row" id="event_'.$data['id'].'">'.$data['nome'].'</td>
-                  <td scope="row">'.$data['local'].'</td>
-                  <td scope="row">'.$data['data'].'</td>
+                  <td id="event_'.$data['id'].'">'.$data['nome'].'</td>
+                  <td >'.$data['local'].'</td>
+                  <td >'.$data['data'].'</td>
                   <td>
                      <button value="edit" onclick="edit('.$data['id'].')" type="button" name="edit" id="edit" class="btn btn-warning">
                         <i class="fa fa-edit"></i></button>
@@ -46,7 +46,7 @@ function getList (){
             ';
          }exit($response);
       }else{
-         exit("A base de dados está vazia");
+         exit("BaseDeDadosVazia");
       }
    }
    mysqli_close($conn);
