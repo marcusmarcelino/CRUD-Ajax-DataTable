@@ -27,7 +27,7 @@ function getList (){
 
       if($result->num_rows > 0){
          while($data = $result->fetch_assoc()){
-            $response = '
+            $response .= '
                <tr>
                   <td scope="row" id="event_'.$data['id'].'">'.$data['nome'].'</td>
                   <td scope="row">'.$data['local'].'</td>
