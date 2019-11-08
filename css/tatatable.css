@@ -30,6 +30,15 @@
     border-radius: 0 10px 10px 0;
 }
 
+#tbody tr td:nth-child(n) {
+    padding: 8px 0 0 0;
+}
+
+#tbody tr td:nth-child(5n) {
+    padding-bottom: 2px;
+    padding-top: 2px;
+}
+
 #tabelaDeEventos {
     border-bottom: 1px solid #97bac7
 }
