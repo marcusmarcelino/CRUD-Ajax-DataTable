@@ -1,5 +1,5 @@
 $(document).ready(function () {
-   getList();  
+   getList(); 
 });
 
 function getList() {
