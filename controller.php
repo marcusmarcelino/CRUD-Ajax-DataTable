@@ -4,6 +4,9 @@ switch ($op){
    case 'getList':
       getList();
       break;
+   case 'listEstados':
+      listEstados();
+      break;
    case 'save':
       save();
       break;
@@ -43,6 +46,26 @@ function getList (){
                      </button>
                   </td>
                </tr>
+            ';
+         }exit($response);
+      }else{
+         exit("BaseDeDadosVazia");
+      }
+   }
+   mysqli_close($conn);
+}
+
+function listEstados (){
+   include_once("conexao.php");
+   if(isset($_GET)){
+      $sql = "SELECT * FROM estados";
+      $result = mysqli_query($conn,$sql);
+      $response = '<option value="">Selecione o Estado</option>';
+
+      if($result->num_rows > 0){
+         while($data = $result->fetch_assoc()){
+            $response .= '
+               <option value="'.$data['sigla'].'">'.$data['sigla'].'</option>
             ';
          }exit($response);
       }else{
