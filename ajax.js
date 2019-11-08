@@ -1,5 +1,6 @@
 $(document).ready(function () {
-   getList(); 
+   getList();
+   listEstados();
 });
 
 function getList() {
@@ -24,6 +25,19 @@ function getList() {
          $('.dataTables_length').addClass('bs-select');
       }
       
+   }).fail(function (error) {
+      console.log(error);
+   });
+}
+
+function listEstados() {
+   $.ajax({
+      url: 'controller.php?op=listEstados',
+      method: 'GET',
+      dataType: 'text',
+      success: function (response) { }
+   }).done(function (response) {
+      $('#estadoEvento').html(response);
    }).fail(function (error) {
       console.log(error);
    });
