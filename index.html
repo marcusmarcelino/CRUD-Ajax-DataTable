@@ -7,12 +7,15 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/c08cea7233.js" crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.css" />
     <link rel="stylesheet" type="text/css" href="css/tatatable.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
 
 </head>
 
@@ -29,8 +32,8 @@
     <div class="container">
         <div>
             <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#modalForm">
-            Add
-         </button>
+                Add
+            </button>
         </div>
         <br>
         <table id="tabelaDeEventos" class="table table-hover text-center">
@@ -48,28 +51,46 @@
     </div>
 
     <!-- Modal -->
-    <div class="modal fade" id="modalForm" tabindex="-1" role="dialog" aria-labelledby="modalFormLabel" aria-hidden="true">
+    <div class="modal fade" id="modalForm" tabindex="-1" role="dialog" aria-labelledby="modalFormLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="modalFormLabel">Cadastre o Evento</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-               </button>
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
                 <div class="modal-body">
                     <form method="POST" action="" data-toggle="validator" role="form">
                         <div class="form-group">
                             <label for="Nome">Nome do Evento</label>
-                            <input type="text" class="form-control" name="nomeEvento" id="nomeEvento" aria-describedby="nomeId" placeholder="Nome do Evento" required>
+                            <input type="text" class="form-control" name="nomeEvento" id="nomeEvento"
+                                aria-describedby="nomeId" placeholder="Nome do Evento" required>
                         </div>
-                        <div class="form-group">
-                            <label for="Local">Local do Evento</label>
-                            <input type="text" class="form-control" name="localEvento" id="localEvento" aria-describedby="localId" placeholder="Local do Evento" required>
+                        <div class="form-row" id="form-div-localdata">
+                            <div class="col">
+                                <label for="Local">Local do Evento</label>
+                                <input type="text" class="form-control" name="localEvento" id="localEvento"
+                                    aria-describedby="localId" placeholder="Local do Evento" required>
+                            </div>
+                            <div class="col">
+                                <label for="Data">Data do Evento</label>
+                                <input type="date" class="form-control" name="dataEvento" id="dataEvento"
+                                    aria-describedby="dataId" placeholder="Data do Evento" required>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="Data">Data do Evento</label>
-                            <input type="date" class="form-control" name="dataEvento" id="dataEvento" aria-describedby="dataId" placeholder="Data do Evento" required>
+                        <div class="form-row">
+                            <div class="col">
+                                <label for="Cidade">Cidade</label>
+                                <input type="text" class="form-control" name="nomeEvento" id="cidadeEvento"
+                                    aria-describedby="nomeId" placeholder="Cidade do Evento" required>
+                            </div>
+                            <div class="col">
+                                <label for="Estado">Estado</label>
+                                <select id="estadoEvento" class="form-control" required>
+                                </select>
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Sair</button>
@@ -77,7 +98,6 @@
                         </div>
                     </form>
                 </div>
-
             </div>
         </div>
     </div>
@@ -87,27 +107,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
-
-    <script src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
-
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
 
     <script src="ajax.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#minhaTabela').DataTable({
-                "language": {
-                    "lengthMenu": "Mostrando _MENU_ registros por página",
-                    "zeroRecords": "Nada encontrado",
-                    "info": "Mostrando página _PAGE_ de _PAGES_",
-                    "infoEmpty": "Nenhum registro disponível",
-                    "infoFiltered": "(filtrado de _MAX_ registros no total)"
-                }
-            });
-            $('.dataTables_length').addClass('bs-select');
-        });
-    </script>
 
 </body>
 
