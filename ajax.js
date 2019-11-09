@@ -1,4 +1,11 @@
 $(document).ready(function () {
+   $("#add").on('click', function () {
+      $('#nomeEvento').val('');
+      $('#localEvento').val('');
+      $('#cidadeEvento').val('');
+      $('#estadoEvento').val('');
+      $('#dataEvento option:selected').val('');
+   });
    getList();
    listEstados();
 });
@@ -10,7 +17,7 @@ function getList() {
       dataType: 'text',
       success: function (response) { }
    }).done(function (response) {
-      if(response != "BaseDeDadosVazia"){
+      if (response != "BaseDeDadosVazia") {
          $('#tbody').html(response);
          $('#tabelaDeEventos').DataTable({
             "language": {
@@ -18,13 +25,20 @@ function getList() {
                "zeroRecords": "Nada encontrado",
                "info": "Mostrando página _PAGE_ de _PAGES_",
                "infoEmpty": "Nenhum registro disponível",
-               "infoFiltered": "(filtrado de _MAX_ registros no total)"
+               "infoFiltered": "(filtrado de _MAX_ registros no total)",
+               "search": "Procurar por:",
+               "paginate": {
+                  "first": "Primeiro",
+                  "last": "Ultimo",
+                  "next": "Próximo",
+                  "previous": "Anterior"
+               },
             },
-            "order": [[ 3, "desc" ]]
+            "aaSorting": []
          });
          $('.dataTables_length').addClass('bs-select');
       }
-      
+
    }).fail(function (error) {
       console.log(error);
    });
@@ -42,3 +56,51 @@ function listEstados() {
       console.log(error);
    });
 }
+
+function save() {
+   if (
+      isNotEmpty($('#nomeEvento')) &&
+      isNotEmpty($('#localEvento')) &&
+      isNotEmpty($('#dataEvento')) &&
+      isNotEmpty($('#cidadeEvento')) &&
+      isNotEmpty($('#estadoEvento'))
+   ) {
+      $.ajax({
+         url: 'controller.php?op=save',
+         method: 'POST',
+         dataType: 'text',
+         data: {
+            nome_evento: $('#nomeEvento').val(),
+            local_evento: $('#localEvento').val(),
+            cidade_evento: $('#cidadeEvento').val(),
+            estado_evento: $('#estadoEvento option:selected').val(),
+            data_evento: $('#dataEvento').val()
+         },
+         success: function () {
+            $("#modalForm").modal('hide');
+         }
+      }).done(function (response) {
+         alert(response);
+      }).fail(function (error) {
+         console.log(error);
+      });
+   } else {
+      alert('Existe campo vazio, porfavor preencha-o');
+   }
+}
+
+function isNotEmpty(element) {
+   if (element.val() == '') {
+      return false
+   } else {
+      return true;
+   }
+}
+
+/**
+nome_evento: $('#nomeEvento').val(),
+            local_evento: $('#localEvento').val(),
+            cidade_evento: $('#cidadeEvento').val(),
+            estado_evento: $('#estadoEvento option:selected').val(),
+            data_evento: $('#dataEvento').val()
+ */
