@@ -31,7 +31,7 @@
 
     <div class="container">
         <div>
-            <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#modalForm">
+            <button type="button" id="add" class="btn btn-dark" data-toggle="modal" data-target="#modalForm">
                 Add
             </button>
         </div>
@@ -39,6 +39,7 @@
         <table id="tabelaDeEventos" class="table table-hover text-center">
             <thead class="thead-dark">
                 <tr>
+                    <th>Id</th>
                     <th>Evento</th>
                     <th>Local</th>
                     <th>Data</th>
@@ -83,8 +84,8 @@
                         <div class="form-row">
                             <div class="col">
                                 <label for="Cidade">Cidade</label>
-                                <input type="text" class="form-control" name="nomeEvento" id="cidadeEvento"
-                                    aria-describedby="nomeId" placeholder="Cidade do Evento" required>
+                                <input type="text" class="form-control" name="cidadeEvento" id="cidadeEvento"
+                                    aria-describedby="cidadeId" placeholder="Cidade do Evento" required>
                             </div>
                             <div class="col">
                                 <label for="Estado">Estado</label>
