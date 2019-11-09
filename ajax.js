@@ -3,8 +3,9 @@ $(document).ready(function () {
       $('#nomeEvento').val('');
       $('#localEvento').val('');
       $('#cidadeEvento').val('');
-      $('#estadoEvento').val('');
-      $('#dataEvento option:selected').val('');
+      $('#estadoEvento option:selected').val('');
+      $('#dataEvento').val('');
+      $("#editRowID").val('');
    });
    getList();
    listEstados();
@@ -57,7 +58,7 @@ function listEstados() {
    });
 }
 
-function save() {
+function save(key) {
    if (
       isNotEmpty($('#nomeEvento')) &&
       isNotEmpty($('#localEvento')) &&
@@ -70,6 +71,8 @@ function save() {
          method: 'POST',
          dataType: 'text',
          data: {
+            key : key,
+            editRowID: $('#editRowID').val(),
             nome_evento: $('#nomeEvento').val(),
             local_evento: $('#localEvento').val(),
             cidade_evento: $('#cidadeEvento').val(),
@@ -80,7 +83,12 @@ function save() {
             $("#modalForm").modal('hide');
          }
       }).done(function (response) {
-         alert(response);
+         if (response == "update") {
+            alert("O registro foi atualizado!!!");
+         } else {
+            $("#add").attr('value', 'save').attr('onclick', "save('add')");
+            alert(response);
+         }
       }).fail(function (error) {
          console.log(error);
       });
@@ -97,33 +105,26 @@ function isNotEmpty(element) {
    }
 }
 
-function edit(id){
+function edit(id) {
    $.ajax({
       url: 'controller.php?op=edit',
       method: 'GET',
       dataType: 'json',
       data: {
-         id : id
+         id: id
       },
-      success: function(){
+      success: function () {
          $("#modalForm").modal('show');
       }
-   }).done(function(response){
-      alert(response);
+   }).done(function (response) {
+      $('#editRowID').val(id);
       $('#nomeEvento').val(response.nome_evento);
       $('#localEvento').val(response.local_evento);
       $('#dataEvento').val(response.data_evento);
       $('#cidadeEvento').val(response.cidade_evento);
       $('#estadoEvento').val(response.estado_evento);
-   }).fail(function(error){
+      $("#add").attr('value', 'save').attr('onclick', "save('update')");
+   }).fail(function (error) {
       console.log(error);
    });
 }
-
-/**
-nome_evento: $('#nomeEvento').val(),
-            local_evento: $('#localEvento').val(),
-            cidade_evento: $('#cidadeEvento').val(),
-            estado_evento: $('#estadoEvento option:selected').val(),
-            data_evento: $('#dataEvento').val()
- */
