@@ -80,7 +80,6 @@ function listEstados() {
 
 function save() {
    include_once("conexao.php");
-
    if (isset($_POST)) {
       $nome_evento = $_POST['nome_evento'];
       $local_evento = $_POST['local_evento'];
@@ -88,7 +87,7 @@ function save() {
       $estado_evento = $_POST['estado_evento'];
       $data_evento = $_POST['data_evento'];
 
-      $result = mysqli_query($conn, "SELECT id FROM events WHERE nome='$nome_evento'");
+      $result = mysqli_query($conn, "SELECT id FROM events WHERE nome_evento='$nome_evento'");
 
       if ($result->num_rows > 0) {
          exit('existe');
@@ -98,6 +97,30 @@ function save() {
          exit('O Evento foi inserido!');
       }
    }
+   mysqli_close($conn);
+}
 
+function edit() {
+   
+   include_once("conexao.php");
+   if (isset($_GET)) {
+      $id = $_GET['id'];
+      $result = mysqli_query($conn, "SELECT 
+      nome_evento, 
+      local_evento,
+      cidade_evento,
+      estado_evento,
+      data_evento
+      FROM events WHERE id='$id'") or die($mysqli->error);
+      $data = $result->fetch_array();
+      $jsonArray = array(
+         'nome_evento' => $data['nome_evento'],
+         'local_evento' => $data['local_evento'],
+         'cidade_evento' => $data['cidade_evento'],
+         'estado_evento' => $data['estado_evento'],
+         'data_evento' => $data['data_evento'],
+      );
+      exit(json_encode($jsonArray));
+   }
    mysqli_close($conn);
 }
