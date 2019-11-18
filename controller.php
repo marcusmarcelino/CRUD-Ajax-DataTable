@@ -122,3 +122,13 @@ function edit(){
    }
    mysqli_close($conn);
 }
+
+function delet(){
+   include_once("conexao.php");
+   if (isset($_POST)) {
+      $id = $_POST['id'];
+      mysqli_query($conn, "DELETE FROM events WHERE id='$id'")or die($mysqli->error);
+      exit('O registro '.$id.' foi deletado!');
+   }
+   mysqli_close($conn);
+}

@@ -1,11 +1,6 @@
 $(document).ready(function () {
    $("#add").on('click', function () {
-      $('#nomeEvento').val('');
-      $('#localEvento').val('');
-      $('#cidadeEvento').val('');
-      $('#estadoEvento option:selected').val('');
-      $('#dataEvento').val('');
-      $("#editRowID").val('');
+      limparCampos();
    });
    getList();
    listEstados();
@@ -79,6 +74,7 @@ function save() {
          },
          success: function () {
             $("#modalForm").modal('hide');
+            limparCampos();
          }
       }).done(function (response) {
          alert(response);
@@ -119,4 +115,35 @@ function edit(id) {
    }).fail(function (error) {
       console.log(error);
    });
+}
+
+function delet(id) {
+   if (confirm('Você tem certeza??')) {
+      $.ajax({
+         url: 'controller.php?op=delet',
+         method: 'POST',
+         dataType: 'text',
+         data: {
+            id: id
+         },
+         success: function (response) {
+            window.location.reload();
+         }
+      }).done(function (response) {
+         alert(response);
+      }).fail(function (error) {
+         console.log(error);
+      });
+   } else {
+      alert('Exclusão cancelado!!')
+   }
+}
+
+function limparCampos() {
+   $('#nomeEvento').val('');
+   $('#localEvento').val('');
+   $('#cidadeEvento').val('');
+   $('#estadoEvento option:selected').val('');
+   $('#dataEvento').val('');
+   $("#editRowID").val('');
 }
