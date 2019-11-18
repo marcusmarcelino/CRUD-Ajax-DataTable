@@ -21,8 +21,7 @@ switch ($op) {
       break;
 }
 
-function getList()
-{
+function getList(){
    include_once("conexao.php");
    if (isset($_GET)) {
       $sql = "SELECT * FROM events";
@@ -58,8 +57,7 @@ function getList()
    mysqli_close($conn);
 }
 
-function listEstados()
-{
+function listEstados(){
    include_once("conexao.php");
    if (isset($_GET)) {
       $sql = "SELECT * FROM estados";
@@ -80,44 +78,28 @@ function listEstados()
    mysqli_close($conn);
 }
 
-function save()
-{
+function save(){
    include_once("conexao.php");
    if (isset($_POST)) {
-      $editRowID = $_POST['editRowID'];
       $nome_evento = $_POST['nome_evento'];
       $local_evento = $_POST['local_evento'];
       $cidade_evento = $_POST['cidade_evento'];
       $estado_evento = $_POST['estado_evento'];
       $data_evento = $_POST['data_evento'];
 
-      if ($_POST['key'] == 'update') {
-         mysqli_query($conn, "UPDATE events SET 
-         nome_evento='$nome_evento',
-         local_evento='$local_evento',
-         cidade_evento='$cidade_evento',
-         estado_evento='$estado_evento',
-         data_evento='$data_evento' WHERE id='$editRowID'");
-         exit('update');
-      }
-
-      if ($_POST['key'] == 'add') {
-         $result = mysqli_query($conn, "SELECT id FROM events WHERE nome_evento='$nome_evento'");
-         if ($result->num_rows > 0) {
-            exit('Registro já existe');
-         } else {
-            mysqli_query($conn, "INSERT INTO events (nome_evento, local_evento, cidade_evento, estado_evento, data_evento)
+      $result = mysqli_query($conn, "SELECT id FROM events WHERE nome_evento='$nome_evento'");
+      if ($result->num_rows > 0) {
+         exit('Registro já existe');
+      } else {
+         mysqli_query($conn, "INSERT INTO events (nome_evento, local_evento, cidade_evento, estado_evento, data_evento)
             VALUES ('$nome_evento','$local_evento','$cidade_evento','$estado_evento','$data_evento')") or die($mysqli->error);
-            exit('O Evento foi inserido!');
-         }
+         exit('O Evento foi inserido!');
       }
    }
    mysqli_close($conn);
 }
 
-function edit()
-{
-
+function edit(){
    include_once("conexao.php");
    if (isset($_GET)) {
       $id = $_GET['id'];

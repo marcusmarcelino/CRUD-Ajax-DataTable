@@ -58,7 +58,7 @@ function listEstados() {
    });
 }
 
-function save(key) {
+function save() {
    if (
       isNotEmpty($('#nomeEvento')) &&
       isNotEmpty($('#localEvento')) &&
@@ -71,8 +71,6 @@ function save(key) {
          method: 'POST',
          dataType: 'text',
          data: {
-            key : key,
-            editRowID: $('#editRowID').val(),
             nome_evento: $('#nomeEvento').val(),
             local_evento: $('#localEvento').val(),
             cidade_evento: $('#cidadeEvento').val(),
@@ -83,12 +81,7 @@ function save(key) {
             $("#modalForm").modal('hide');
          }
       }).done(function (response) {
-         if (response == "update") {
-            alert("O registro foi atualizado!!!");
-         } else {
-            $("#add").attr('value', 'save').attr('onclick', "save('add')");
-            alert(response);
-         }
+         alert(response);
       }).fail(function (error) {
          console.log(error);
       });
@@ -123,7 +116,6 @@ function edit(id) {
       $('#dataEvento').val(response.data_evento);
       $('#cidadeEvento').val(response.cidade_evento);
       $('#estadoEvento').val(response.estado_evento);
-      $("#add").attr('value', 'save').attr('onclick', "save('update')");
    }).fail(function (error) {
       console.log(error);
    });
