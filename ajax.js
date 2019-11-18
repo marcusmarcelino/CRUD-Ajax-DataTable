@@ -96,7 +96,7 @@ function isNotEmpty(element) {
 
 function edit(id) {
    $.ajax({
-      url: 'controller.php?op=edit',
+      url: 'controller.php?op=setInfo',
       method: 'GET',
       dataType: 'json',
       data: {
@@ -112,6 +112,27 @@ function edit(id) {
       $('#dataEvento').val(response.data_evento);
       $('#cidadeEvento').val(response.cidade_evento);
       $('#estadoEvento').val(response.estado_evento);
+   }).fail(function (error) {
+      console.log(error);
+   });
+}
+
+function view(id) {
+   $.ajax({
+      url: 'controller.php?op=setInfo',
+      method: 'GET',
+      dataType: 'json',
+      data: {
+         id: id
+      },
+      success: function () {
+      }
+   }).done(function (response) {      
+      $('#dtNomeEvent').append("O evento <strong >"+response.nome_evento+"</strong>");
+      $('#dtLocalEvent').append("Ocorrerá no: <strong >"+response.local_evento+"</strong>");
+      $('#dtDataEvent').append("Data do Evento: <strong >"+response.data_evento+"</strong>");
+      $('#dtCidadeEvent').append("Cidade em que ocorrerá o evento: <strong >"+response.cidade_evento+"</strong>");
+      $('#dtEstadoEvent').append("Estado em que ocorrerá o evento: <strong >"+response.estado_evento+"</strong>");
    }).fail(function (error) {
       console.log(error);
    });
