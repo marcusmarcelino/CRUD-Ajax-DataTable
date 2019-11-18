@@ -10,8 +10,8 @@ switch ($op) {
    case 'save':
       save();
       break;
-   case 'edit':
-      edit();
+   case 'setInfo':
+      setInfo();
       break;
    case 'delet':
       delet();
@@ -39,7 +39,7 @@ function getList(){
                   <td>
                      <button value="edit" onclick="edit(' . $data['id'] . ')" type="button" name="edit" id="edit" class="btn btn-warning">
                         <i class="fa fa-edit"></i></button>
-                     <button value="view" onclick="view(' . $data['id'] . ')" type="button" name="edit" id="edit" class="btn btn-primary">
+                     <button value="view" data-toggle="modal" data-target="#modalDatalhes" onclick="view(' . $data['id'] . ')" type="button" name="view" id="view" class="btn btn-primary">
                         <i class="fa fa-info" aria-hidden="true"></i>
                      </button>
                      <button value="delet" onclick="delet(' . $data['id'] . ')" type="button" name="edit" id="edit" class="btn btn-danger">
@@ -99,7 +99,7 @@ function save(){
    mysqli_close($conn);
 }
 
-function edit(){
+function setInfo(){
    include_once("conexao.php");
    if (isset($_GET)) {
       $id = $_GET['id'];
