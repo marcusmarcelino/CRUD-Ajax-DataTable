@@ -128,3 +128,11 @@ function edit(id) {
       console.log(error);
    });
 }
+
+/**
+nome_evento: $('#nomeEvento').val(),
+            local_evento: $('#localEvento').val(),
+            cidade_evento: $('#cidadeEvento').val(),
+            estado_evento: $('#estadoEvento option:selected').val(),
+            data_evento: $('#dataEvento').val()
+ */
