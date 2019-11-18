@@ -123,7 +123,7 @@ function edit(id) {
       $('#dataEvento').val(response.data_evento);
       $('#cidadeEvento').val(response.cidade_evento);
       $('#estadoEvento').val(response.estado_evento);
-      $("#add").attr('value', 'save').attr('onclick', "save('update')");
+      $("#add").attr('value', 'update').attr('onclick', "save('update')");
    }).fail(function (error) {
       console.log(error);
    });

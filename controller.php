@@ -98,6 +98,7 @@ function save()
          cidade_evento='$cidade_evento',
          estado_evento='$estado_evento',
          data_evento='$data_evento' WHERE id='$editRowID'");
+         mysqli_query($conn,"UPDATE events SET nome_evento='$nome_evento', local_event='$local_evento', cidade_evento='$cidade_evento', estado_evento='$estado_evento', data_evento='$data_evento' WHERE id='$editRowID'");
          exit('update');
       }
 
