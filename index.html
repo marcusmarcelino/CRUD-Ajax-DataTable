@@ -58,7 +58,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="modalFormLabel">Cadastre o Evento</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button onclick="limparCampos()" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -95,7 +95,7 @@
                         </div>
                         <input type="hidden" id="editRowID" value="0">
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Sair</button>
+                            <button onclick="limparCampos()" class="btn btn-secondary" data-dismiss="modal">Sair</button>
                             <button onclick="save()" class="btn btn-primary">Salvar</button>
                         </div>
                     </form>
@@ -122,7 +122,7 @@
                     <p id="dtEstadoEvent"></p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" onclick="limparCamposView()" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>

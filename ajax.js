@@ -70,7 +70,8 @@ function save() {
             local_evento: $('#localEvento').val(),
             cidade_evento: $('#cidadeEvento').val(),
             estado_evento: $('#estadoEvento option:selected').val(),
-            data_evento: $('#dataEvento').val()
+            data_evento: $('#dataEvento').val(),
+            editRowID: $('#editRowID').val()
          },
          success: function () {
             $("#modalForm").modal('hide');
@@ -127,12 +128,12 @@ function view(id) {
       },
       success: function () {
       }
-   }).done(function (response) {      
-      $('#dtNomeEvent').append("O evento <strong >"+response.nome_evento+"</strong>");
-      $('#dtLocalEvent').append("Ocorrerá no: <strong >"+response.local_evento+"</strong>");
-      $('#dtDataEvent').append("Data do Evento: <strong >"+response.data_evento+"</strong>");
-      $('#dtCidadeEvent').append("Cidade em que ocorrerá o evento: <strong >"+response.cidade_evento+"</strong>");
-      $('#dtEstadoEvent').append("Estado em que ocorrerá o evento: <strong >"+response.estado_evento+"</strong>");
+   }).done(function (response) {
+      $('#dtNomeEvent').append("O evento <strong >" + response.nome_evento + "</strong>");
+      $('#dtLocalEvent').append("Ocorrerá no: <strong >" + response.local_evento + "</strong>");
+      $('#dtDataEvent').append("Data do Evento: <strong >" + response.data_evento + "</strong>");
+      $('#dtCidadeEvent').append("Cidade em que ocorrerá o evento: <strong >" + response.cidade_evento + "</strong>");
+      $('#dtEstadoEvent').append("Estado em que ocorrerá o evento: <strong >" + response.estado_evento + "</strong>");
    }).fail(function (error) {
       console.log(error);
    });
@@ -164,7 +165,15 @@ function limparCampos() {
    $('#nomeEvento').val('');
    $('#localEvento').val('');
    $('#cidadeEvento').val('');
-   $('#estadoEvento option:selected').val('');
+   $('#estadoEvento').val('');
    $('#dataEvento').val('');
    $("#editRowID").val('');
+}
+
+function limparCamposView(){
+   $('#dtNomeEvent strong').remove();
+   $('#dtLocalEvent strong').remove();
+   $('#dtDataEvent strong').remove();
+   $('#dtCidadeEvent strong').remove();
+   $('#dtEstadoEvent strong').remove();
 }

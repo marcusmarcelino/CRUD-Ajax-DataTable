@@ -29,6 +29,10 @@
    width: 200px;
 }
 
-.modal-footer {
+#modalForm .modal-footer {
    padding-bottom: 0;
+}
+
+#contentDetailEvent p{
+   line-height: 0.5;
 }

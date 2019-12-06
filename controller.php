@@ -78,27 +78,6 @@ function listEstados(){
    mysqli_close($conn);
 }
 
-function save(){
-   include_once("conexao.php");
-   if (isset($_POST)) {
-      $nome_evento = $_POST['nome_evento'];
-      $local_evento = $_POST['local_evento'];
-      $cidade_evento = $_POST['cidade_evento'];
-      $estado_evento = $_POST['estado_evento'];
-      $data_evento = $_POST['data_evento'];
-
-      $result = mysqli_query($conn, "SELECT id FROM events WHERE nome_evento='$nome_evento'");
-      if ($result->num_rows > 0) {
-         exit('Registro já existe');
-      } else {
-         mysqli_query($conn, "INSERT INTO events (nome_evento, local_evento, cidade_evento, estado_evento, data_evento)
-            VALUES ('$nome_evento','$local_evento','$cidade_evento','$estado_evento','$data_evento')") or die($mysqli->error);
-         exit('O Evento foi inserido!');
-      }
-   }
-   mysqli_close($conn);
-}
-
 function setInfo(){
    include_once("conexao.php");
    if (isset($_GET)) {
@@ -129,6 +108,33 @@ function delet(){
       $id = $_POST['id'];
       mysqli_query($conn, "DELETE FROM events WHERE id='$id'")or die($mysqli->error);
       exit('O registro '.$id.' foi deletado!');
+   }
+   mysqli_close($conn);
+}
+
+function save(){
+   include_once("conexao.php");
+   if (isset($_POST)) {
+      $nome_evento = $_POST['nome_evento'];
+      $local_evento = $_POST['local_evento'];
+      $cidade_evento = $_POST['cidade_evento'];
+      $estado_evento = $_POST['estado_evento'];
+      $data_evento = $_POST['data_evento'];
+      $id = $_POST['editRowID'];
+
+      if($id != ''){
+         mysqli_query($conn, "UPDATE events SET nome_evento='$nome_evento', local_evento='$local_evento', cidade_evento='$cidade_evento', estado_evento='$estado_evento', data_evento='$data_evento' WHERE id='$id'") or die($mysqli->error);
+         exit ("O registro foi atualizado!!");
+      }else{
+         $result = mysqli_query($conn, "SELECT id FROM events WHERE id='$id'");
+         if ($result->num_rows > 0) {
+            exit('Registro já existe');
+         } else {
+            mysqli_query($conn, "INSERT INTO events (nome_evento, local_evento, cidade_evento, estado_evento, data_evento)
+               VALUES ('$nome_evento','$local_evento','$cidade_evento','$estado_evento','$data_evento')") or die($mysqli->error);
+            exit('O Evento foi inserido!');
+         }
+      } 
    }
    mysqli_close($conn);
 }
